@@ -1,9 +1,9 @@
 class Kismet < Formula
   desc "Github mirror of official Kismet repository"
   homepage "https://www.kismetwireless.net"
-  url "https://github.com/kismetwireless/kismet/archive/kismet-2018-08-beta1.tar.gz"
-  sha256 "5ba6f54759a8ad14942540b8992163beee4bcdd2197328d0c44659c3ea0085df"
-  version "2018-08-beta1"
+  url "https://github.com/kismetwireless/kismet/archive/kismet-2019-01-beta2.tar.gz"
+  sha256 "6ef3e1132468c3ec5b699cec2ee003f47bb6b21d1eeb71317fbac44ae33c3920"
+  version "2019-01-beta2"
   head "https://github.com/kismetwireless/kismet.git"
   depends_on "pkg-config" => :build
   depends_on "libmicrohttpd"
