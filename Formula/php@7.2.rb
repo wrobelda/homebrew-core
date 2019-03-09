@@ -1,13 +1,14 @@
 class PhpAT72 < Formula
   desc "General-purpose scripting language"
   homepage "https://secure.php.net/"
-  url "https://php.net/get/php-7.2.13.tar.xz/from/this/mirror"
-  sha256 "14b0429abdb46b65c843e5882c9a8c46b31dfbf279c747293b8ab950c2644a4b"
+  url "https://php.net/get/php-7.2.15.tar.xz/from/this/mirror"
+  sha256 "75e90012faef700dffb29311f3d24fa25f1a5e0f70254a9b8d5c794e25e938ce"
 
   bottle do
-    sha256 "6dfcf4baffb4a9b929725a69d6d162dcf38f403788ef45740a2572cb1b610765" => :mojave
-    sha256 "30f1ada91bee7fe2fb2ee69ce6b7714dae947f2fafe8a408ca4e19b2d4e5d3da" => :high_sierra
-    sha256 "7a1c6d536b23d1c2fc06b17ada65c8d62ad56cf4304b3f1fdb41dd66db48e38b" => :sierra
+    rebuild 1
+    sha256 "8968abf6810183991c1e74170b2dc6d5278f63437e22d9210200405c658eaf0b" => :mojave
+    sha256 "84263102d3cf9bf2d36948f1b109c5f44683640c1d59579a1d5be0ce524b7a73" => :high_sierra
+    sha256 "c1b41804f586a52286baf546291d34cbcb1eff7199b43f549d474a21f41c71be" => :sierra
   end
 
   keg_only :versioned_formula
@@ -33,7 +34,6 @@ class PhpAT72 < Formula
   depends_on "libzip"
   depends_on "openldap"
   depends_on "openssl"
-  depends_on "pcre"
   depends_on "sqlite"
   depends_on "tidy-html5"
   depends_on "unixodbc"
@@ -42,8 +42,6 @@ class PhpAT72 < Formula
   # PHP build system incorrectly links system libraries
   # see https://github.com/php/php-src/pull/3472
   patch :DATA
-
-  needs :cxx11
 
   def install
     # Ensure that libxml2 will be detected correctly in older MacOS

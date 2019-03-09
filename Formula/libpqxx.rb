@@ -3,13 +3,13 @@ class Libpqxx < Formula
   homepage "http://pqxx.org/development/libpqxx/"
   url "https://github.com/jtv/libpqxx/archive/6.2.5.tar.gz"
   sha256 "36fcf8439ac7f7cc68b21e95b20e921ece4487cda1cc1d09b798a84e7cb3a4b7"
-  revision 3
+  revision 5
 
   bottle do
     cellar :any
-    sha256 "14ea8b5493e751ba37be37f31070f94690b7e00f4da84bb55d9192975c988484" => :mojave
-    sha256 "9bcda764067d6e48837289429d317a3c113d977e77d8378341c0c77034410881" => :high_sierra
-    sha256 "62b1423cade0315667f6be6dd4c53424c2deff87877f44e2f554cb9409478c58" => :sierra
+    sha256 "252bef987d558c400bed42eac610114805d103b09dca80a4108bbee94a512c28" => :mojave
+    sha256 "c179153f967f4e6242cfb6f8ad9c75886ab08320c3772874de04367ca2b0e495" => :high_sierra
+    sha256 "6178caf5cac93adf2464eda7c229c2ff4b5dfebd6d9176b95df5b79c2b064fe6" => :sierra
   end
 
   depends_on "pkg-config" => :build

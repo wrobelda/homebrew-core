@@ -3,9 +3,9 @@ class Go < Formula
   homepage "https://golang.org"
 
   stable do
-    url "https://dl.google.com/go/go1.11.4.src.tar.gz"
-    mirror "https://fossies.org/linux/misc/go1.11.4.src.tar.gz"
-    sha256 "4cfd42720a6b1e79a8024895fa6607b69972e8e32446df76d6ce79801bbadb15"
+    url "https://dl.google.com/go/go1.12.src.tar.gz"
+    mirror "https://fossies.org/linux/misc/go1.12.src.tar.gz"
+    sha256 "09c43d3336743866f2985f566db0520b36f4992aea2b4b2fd9f52f17049e88f2"
 
     go_version = version.to_s.split(".")[0..1].join(".")
     resource "gotools" do
@@ -15,9 +15,9 @@ class Go < Formula
   end
 
   bottle do
-    sha256 "5a23bb028eae9ff09f9f9fbaccd2acee480a770cdab7779ccf927020970bbb89" => :mojave
-    sha256 "edff5e1501c6b1605201a3d9abb37d54961d2610eb30c6102fffdc0e63905bf1" => :high_sierra
-    sha256 "0732f59fc448ca5635aecab381b84f5527cc2fe32c30b211b79f9cffc1b03079" => :sierra
+    sha256 "d2982a90a2f4f241f188e5b5f1967bc790dca805a62d02d4169c5e214bcae051" => :mojave
+    sha256 "c7ec3ed5ebe8efeb1bc8264ff1b1361c39f8fec05bdce62fe00b57db1de3b026" => :high_sierra
+    sha256 "093a611cc3d6b07f20050f77bd6ec5a050bec4f0362c5a693101eef7877db60d" => :sierra
   end
 
   head do
@@ -56,6 +56,7 @@ class Go < Formula
 
     # Build and install godoc
     ENV.prepend_path "PATH", bin
+    ENV["GO111MODULE"] = "on"
     ENV["GOPATH"] = buildpath
     (buildpath/"src/golang.org/x/tools").install resource("gotools")
     cd "src/golang.org/x/tools/cmd/godoc/" do
@@ -63,16 +64,6 @@ class Go < Formula
       (libexec/"bin").install "godoc"
     end
     bin.install_symlink libexec/"bin/godoc"
-  end
-
-  def caveats; <<~EOS
-    A valid GOPATH is required to use the `go get` command.
-    If $GOPATH is not specified, $HOME/go will be used by default:
-      https://golang.org/doc/code.html#GOPATH
-
-    You may wish to add the GOROOT-based install location to your PATH:
-      export PATH=$PATH:#{opt_libexec}/bin
-  EOS
   end
 
   test do

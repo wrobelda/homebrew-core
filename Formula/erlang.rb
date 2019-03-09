@@ -2,15 +2,15 @@ class Erlang < Formula
   desc "Programming language for highly scalable real-time systems"
   homepage "https://www.erlang.org/"
   # Download tarball from GitHub; it is served faster than the official tarball.
-  url "https://github.com/erlang/otp/archive/OTP-21.2.2.tar.gz"
-  sha256 "41b1c3a8343218157a683776e71d80a05ac4eb4019a90a760846608d78817690"
+  url "https://github.com/erlang/otp/archive/OTP-21.2.7.tar.gz"
+  sha256 "871c121efc1a27529e4eb916b8f956f5f9c5eb070d0821ed3e8b818e8536039d"
   head "https://github.com/erlang/otp.git"
 
   bottle do
     cellar :any
-    sha256 "6269059ae2aec40be2e5f650fcdc0979709e04e977a0ae6c40dffdbafd8d2d14" => :mojave
-    sha256 "2928dfa397a5c1088e2391c1c555234ddbc0874624e20f066d343fc5533a0788" => :high_sierra
-    sha256 "e672ebeb2b471d1fddc424f0e2767c7a9303bbff9bc32bb3e767f44e88dc7703" => :sierra
+    sha256 "04e6d2910ad79d0371b0f384230ce83dcc3f068d3e1a6a65fa2a4bf7ee6261b1" => :mojave
+    sha256 "f517ca98ab4cdce60e98b87ed8a39e1d4cea50bec2bf15218c3af79b4393acf5" => :high_sierra
+    sha256 "52a192901a832ad334c9f645892bc1780b698357acab6228908bc01bdcc1e79d" => :sierra
   end
 
   depends_on "autoconf" => :build
@@ -52,9 +52,9 @@ class Erlang < Formula
       --enable-wx
       --with-ssl=#{Formula["openssl"].opt_prefix}
       --without-javac
+      --enable-darwin-64bit
     ]
 
-    args << "--enable-darwin-64bit" if MacOS.prefer_64_bit?
     args << "--enable-kernel-poll" if MacOS.version > :el_capitan
     args << "--with-dynamic-trace=dtrace" if MacOS::CLT.installed?
 

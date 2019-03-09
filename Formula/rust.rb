@@ -3,13 +3,13 @@ class Rust < Formula
   homepage "https://www.rust-lang.org/"
 
   stable do
-    url "https://static.rust-lang.org/dist/rustc-1.31.1-src.tar.gz"
-    sha256 "91d2fc22f08d986adab7a54eb3a6a9b99e490f677d2d092e5b9e4e069c23686a"
+    url "https://static.rust-lang.org/dist/rustc-1.33.0-src.tar.gz"
+    sha256 "5a01a8d7e65126f6079042831385e77485fa5c014bf217e9f3e4aff36a485d94"
 
     resource "cargo" do
       url "https://github.com/rust-lang/cargo.git",
-          :tag      => "0.32.0",
-          :revision => "339d9f9c8f400010df3282ae5582bf3a0f739004"
+          :tag      => "0.34.0",
+          :revision => "f099fe94b66f0a2f80370be8f2d3db2a55b97050"
     end
 
     resource "racer" do
@@ -22,9 +22,10 @@ class Rust < Formula
 
   bottle do
     cellar :any
-    sha256 "e2df920e2a1089e0e36d591fa8289ebbd28ddb28912705ecc64de6f387ef4fcf" => :mojave
-    sha256 "7dc3455ea59cb83d6963cf92272ee752c0f2ab667f78add87f16aa4255dc0cb7" => :high_sierra
-    sha256 "2eeece7a9368c1814a86ef3814340b1da7f2fedf0a7c9d0e2508309f5683f896" => :sierra
+    rebuild 1
+    sha256 "4061bd9640258ff2d50228b419b8016a1b347fc0eaf80d493170dc436c02c292" => :mojave
+    sha256 "5cd48c60b52d3c92e224f03e919c72a1282c926ae8ac4dc76a772dacb00c222b" => :high_sierra
+    sha256 "4d2cf000ff7f615a6d8ce1712d9895724d4a0af24f83ead797dd3a1a13261d14" => :sierra
   end
 
   head do
@@ -44,17 +45,10 @@ class Rust < Formula
   depends_on "openssl"
   depends_on "pkg-config"
 
-  # According to the official readme, GCC 4.7+ is required
-  fails_with :gcc_4_0
-  fails_with :gcc_4_2
-  ("4.3".."4.6").each do |n|
-    fails_with :gcc => n
-  end
-
   resource "cargobootstrap" do
     # From https://github.com/rust-lang/rust/blob/#{version}/src/stage0.txt
-    url "https://static.rust-lang.org/dist/2018-10-25/cargo-0.31.0-x86_64-apple-darwin.tar.gz"
-    sha256 "2b8fd336db9f98b778e4ed44186066952f02670cc1e49ade4e00fd55cef5e9f9"
+    url "https://static.rust-lang.org/dist/2019-01-17/cargo-0.33.0-x86_64-apple-darwin.tar.gz"
+    sha256 "25cf75479da383d2307e1d6204e915f628ec3f1c185b124f57839cfd622f54b1"
   end
 
   def install

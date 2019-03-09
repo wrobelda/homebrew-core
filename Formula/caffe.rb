@@ -3,12 +3,12 @@ class Caffe < Formula
   homepage "https://caffe.berkeleyvision.org/"
   url "https://github.com/BVLC/caffe/archive/1.0.tar.gz"
   sha256 "71d3c9eb8a183150f965a465824d01fe82826c22505f7aa314f700ace03fa77f"
-  revision 7
+  revision 9
 
   bottle do
-    sha256 "30122317b26b4d7a80b3ed7f553d91107c251cc37345e27958661e74fea47ec7" => :mojave
-    sha256 "721b467dc10a5f8aee917320316d4ae28cb37b0364b26a39f7bf4fde2b3cd8b8" => :high_sierra
-    sha256 "1161eb4c1a61e167a2a3f0e43239223cdfe9fa7039b2430541fde663fee21c1e" => :sierra
+    sha256 "9cdc874f49c19283754eb8ae6306e90adade736345fa0b72fcd9d906b115ba81" => :mojave
+    sha256 "876ede2eb7184a378a33eb2ee2fb774e7e5009bae07b206cb19c21e9dcea7ed1" => :high_sierra
+    sha256 "63195fce11d2d3248a894f4ba057c5bd2c934fbfd689574080646232e917347c" => :sierra
   end
 
   depends_on "cmake" => :build
@@ -28,7 +28,12 @@ class Caffe < Formula
     sha256 "472d4a06035497b180636d8a82667129960371375bd10fcb6df5c6c7631f25e0"
   end
 
-  needs :cxx11
+  # Fix compilation with OpenCV 4
+  # https://github.com/BVLC/caffe/issues/6652
+  patch do
+    url "https://github.com/BVLC/caffe/pull/6638.diff?full_index=1"
+    sha256 "6a6368d715284fabfa96660b6d24d1f4f419f3e6cdddab9a7293954fee4ec2bc"
+  end
 
   def install
     ENV.cxx11

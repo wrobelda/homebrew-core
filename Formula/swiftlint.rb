@@ -2,14 +2,14 @@ class Swiftlint < Formula
   desc "Tool to enforce Swift style and conventions"
   homepage "https://github.com/realm/SwiftLint"
   url "https://github.com/realm/SwiftLint.git",
-      :tag      => "0.29.2",
-      :revision => "a21a8b3344d24a19f396270e5a5f4fda9967f66d"
+      :tag      => "0.31.0",
+      :revision => "26c0048cf4567f0e96f97e2c567ce1c05209e476"
   head "https://github.com/realm/SwiftLint.git"
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "6e7687bbdfadd603cb7a7892d6b019892e67930349fcc5fb225993fab46b337e" => :mojave
-    sha256 "89f50a41b94142703e6b04278ca543455dc8aa1d200d60fad1a190bf1b558fb8" => :high_sierra
+    sha256 "96c19572915be9a06863c42f70b44a09e67e244fdf59a34e34d6116afa6ce190" => :mojave
+    sha256 "5b41879184a3a2f0b55cedf05baaa63e805624e998d58bf8c7c3b3b1aebfa620" => :high_sierra
   end
 
   depends_on :xcode => ["10.0", :build]
