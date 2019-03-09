@@ -46,6 +46,6 @@ class Kismet < Formula
   end
 
   test do
-    system bin/"kismet", "-v --debug"
+    system bin/"kismet -v --debug | grep 'Kismet 2019-01-BETA2'"
   end
 end
