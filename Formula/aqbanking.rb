@@ -4,6 +4,7 @@ class Aqbanking < Formula
   url "https://www.aquamaniac.de/rdm/attachments/download/342/aqbanking-6.2.5.tar.gz"
   sha256 "cf5b060e3ec7e3fc925687caf044d4df3dbf9595f23c4fe8ffad78f44af0d6df"
   license "GPL-2.0-or-later"
+  revision 1
 
   livecheck do
     url "https://www.aquamaniac.de/rdm/projects/aqbanking/files"
@@ -33,6 +34,11 @@ class Aqbanking < Formula
   depends_on "libxmlsec1"
   depends_on "libxslt"
   depends_on "pkg-config" # aqbanking-config needs pkg-config for execution
+
+  patch do
+    url "https://github.com/wrobelda/aqbanking/commit/171dbecb9720b168282126dcf00e741d9b8e912a.patch?full_index=1"
+    sha256 "80ea4d3e8f5221da220f37d3c8383bf8c971c9481b75d6ea58844f42c6ceb58e"
+  end
 
   def install
     ENV.deparallelize
