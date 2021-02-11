@@ -36,8 +36,8 @@ class Aqbanking < Formula
   depends_on "pkg-config" # aqbanking-config needs pkg-config for execution
 
   patch do
-    url "https://github.com/wrobelda/aqbanking/commit/171dbecb9720b168282126dcf00e741d9b8e912a.patch?full_index=1"
-    sha256 "80ea4d3e8f5221da220f37d3c8383bf8c971c9481b75d6ea58844f42c6ceb58e"
+    url "https://github.com/aqbanking/aqbanking/commit/661fe19ceb351e86d3c684c304be1cd602cc37de.patch?full_index=1"
+    sha256 "c34185b16fa8b261f760e0b7ff38b6d21b6a4ee5593b8362fc0c1f030f0bb1d2"
   end
 
   def install
