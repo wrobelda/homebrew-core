@@ -37,8 +37,16 @@ class KdeExtraCmakeModules < Formula
   end
 
   test do
-    (testpath/"CMakeLists.txt").write("find_package(ECM REQUIRED)")
-    system "cmake", ".", "-Wno-dev"
+    (testpath/"CMakeLists.txt").write <<~EOS
+      project(test_ECM)
+      find_package(Qt5 REQUIRED Core)
+      find_package(ECM REQUIRED)
+    EOS
+
+    args = std_cmake_args
+    args << "-DQt5_DIR=#{Formula["qt@5"].opt_prefix/"lib/cmake/Qt5"}"
+    system "cmake", testpath.to_s, *args
+    system "make"
 
     expected="ECM_DIR:PATH=#{HOMEBREW_PREFIX}/share/ECM/cmake"
     assert_match expected, File.read(testpath/"CMakeCache.txt")
