@@ -41,17 +41,22 @@ class KdeKcodecs < Formula
       system "ninja", "install"
       prefix.install "install_manifest.txt"
     end
+    pkgshare.install "autotests"
   end
 
   test do
     (testpath/"CMakeLists.txt").write <<~EOS
-      project(test_KF5Codecs)
-      find_package(Qt5 REQUIRED Core)
-      find_package(KF5Codecs REQUIRED)
+      include(FeatureSummary)
+      find_package(ECM NO_MODULE)
+      set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "#{pkgshare}/cmake")
+
+      add_subdirectory(autotests)
     EOS
 
+    cp_r (pkgshare/"autotests"), testpath
+
     args = std_cmake_args
-    args << "-DQt5_DIR=#{Formula["qt@5"].opt_prefix/"lib/cmake/Qt5"}"
+    args << "-DQt5_DIR=#{Formula["qt@5"].opt_lib/"cmake/Qt5"}"
 
     system "cmake", testpath.to_s, *args
     system "make"
