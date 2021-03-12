@@ -36,18 +36,26 @@ class KdeKidletime < Formula
       system "ninja", "install"
       prefix.install "install_manifest.txt"
     end
+
+    pkgshare.install "examples"
   end
 
   test do
     (testpath/"CMakeLists.txt").write <<~EOS
-      project(test_KF5IdleTime)
-      find_package(Qt5 REQUIRED Core)
-      find_package(KF5IdleTime REQUIRED)
+      include(FeatureSummary)
+      find_package(ECM NO_MODULE)
+      set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "#{pkgshare}/cmake")
+
+      add_subdirectory(examples)
     EOS
 
+    cp_r (pkgshare/"examples"), testpath
+
     args = std_cmake_args
-    args << "-DQt5_DIR=#{Formula["qt@5"].opt_prefix/"lib/cmake/Qt5"}"
+    args << "-DQt5_DIR=#{Formula["qt@5"].opt_lib/"cmake/Qt5"}"
+    args << "-DQt5Gui_DIR=#{Formula["qt@5"].opt_lib/"cmake/Qt5Gui"}"
+
     system "cmake", testpath.to_s, *args
-    system "make"
+    system "cmake"
   end
 end
