@@ -45,6 +45,7 @@ class KdeKplotting < Formula
       include(FeatureSummary)
       find_package(ECM NO_MODULE)
       set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "#{pkgshare}/cmake")
+      find_package(Qt5Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 
       add_subdirectory(autotests)
       add_subdirectory(examples)
@@ -55,8 +56,9 @@ class KdeKplotting < Formula
 
     args = std_cmake_args
     args << "-DQt5_DIR=#{Formula["qt@5"].opt_lib/"cmake/Qt5"}"
+    args << "-DQt5Widgets_DIR=#{Formula["qt@5"].opt_lib/"cmake/Qt5Widgets"}"
 
     system "cmake", testpath.to_s, *args
-    system "cmake"
+    system "make"
   end
 end
