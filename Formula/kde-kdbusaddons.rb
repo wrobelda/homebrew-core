@@ -37,7 +37,9 @@ class KdeKdbusaddons < Formula
       system "ninja", "install"
       prefix.install "install_manifest.txt"
     end
+
     pkgshare.install "autotests"
+    pkgshare.install "tests"
   end
 
   test do
@@ -47,9 +49,11 @@ class KdeKdbusaddons < Formula
       set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "#{pkgshare}/cmake")
 
       add_subdirectory(autotests)
+      add_subdirectory(tests)
     EOS
 
     cp_r (pkgshare/"autotests"), testpath
+    cp_r (pkgshare/"tests"), testpath
 
     args = std_cmake_args
     args << "-DQt5_DIR=#{Formula["qt@5"].opt_lib/"cmake/Qt5"}"
