@@ -59,6 +59,6 @@ class KdeKcodecs < Formula
     args << "-DQt5_DIR=#{Formula["qt@5"].opt_lib/"cmake/Qt5"}"
 
     system "cmake", testpath.to_s, *args
-    system "make"
+    system "cmake"
   end
 end
