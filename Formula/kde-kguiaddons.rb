@@ -39,17 +39,27 @@ class KdeKguiaddons < Formula
       system "ninja", "install"
       prefix.install "install_manifest.txt"
     end
+
+    pkgshare.install "autotests"
+    pkgshare.install "tests"
   end
 
   test do
     (testpath/"CMakeLists.txt").write <<~EOS
-      project(test_KF5GuiAddons)
-      find_package(Qt5 REQUIRED Core Gui)
-      find_package(KF5GuiAddons REQUIRED)
+      include(FeatureSummary)
+      find_package(ECM NO_MODULE)
+      set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "#{pkgshare}/cmake")
+
+      add_subdirectory(autotests)
+      add_subdirectory(tests)
     EOS
 
+    cp_r (pkgshare/"autotests"), testpath
+    cp_r (pkgshare/"tests"), testpath
+
     args = std_cmake_args
-    args << "-DQt5_DIR=#{Formula["qt@5"].opt_prefix/"lib/cmake/Qt5"}"
+    args << "-DQt5_DIR=#{Formula["qt@5"].opt_lib/"cmake/Qt5"}"
+
     system "cmake", testpath.to_s, *args
     system "make"
   end
