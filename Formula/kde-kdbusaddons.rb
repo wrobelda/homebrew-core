@@ -37,19 +37,25 @@ class KdeKdbusaddons < Formula
       system "ninja", "install"
       prefix.install "install_manifest.txt"
     end
+    pkgshare.install "autotests"
   end
 
   test do
     (testpath/"CMakeLists.txt").write <<~EOS
-      project(test_KF5DBusAddons)
-      find_package(Qt5 REQUIRED Core DBus)
-      find_package(KF5DBusAddons REQUIRED)
+      include(FeatureSummary)
+      find_package(ECM NO_MODULE)
+      set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "#{pkgshare}/cmake")
+
+      add_subdirectory(autotests)
     EOS
 
+    cp_r (pkgshare/"autotests"), testpath
+
     args = std_cmake_args
-    args << "-DQt5_DIR=#{Formula["qt@5"].opt_prefix/"lib/cmake/Qt5"}"
+    args << "-DQt5_DIR=#{Formula["qt@5"].opt_lib/"cmake/Qt5"}"
+    args << "-DQt5Test_DIR=#{Formula["qt@5"].opt_lib/"cmake/Qt5Test"}"
 
     system "cmake", testpath.to_s, *args
-    system "make"
+    system "cmake"
   end
 end
