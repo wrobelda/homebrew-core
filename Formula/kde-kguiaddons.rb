@@ -6,8 +6,8 @@ class KdeKguiaddons < Formula
   license all_of: [
     "LGPL-2.0-only",
     "LGPL-2.0-or-later",
-    any_of: ["GPL-2.0-only", "GPL-3.0-only"],
-    any_of: ["LGPL-2.1-only", "LGPL-3.0-only"],
+    { any_of: ["GPL-2.0-only", "GPL-3.0-only"] },
+    { any_of: ["LGPL-2.1-only", "LGPL-3.0-only"] },
   ]
   head "https://invent.kde.org/frameworks/kguiaddons.git"
 
