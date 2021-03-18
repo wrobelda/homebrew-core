@@ -26,7 +26,7 @@ class KdeKdoctools < Formula
   depends_on "gettext" => :build
   depends_on "kde-ki18n" => :build
 
-  depends_on "kde-karchive"
+  depends_on "karchive"
 
   uses_from_macos "libxml2"
   uses_from_macos "libxslt"

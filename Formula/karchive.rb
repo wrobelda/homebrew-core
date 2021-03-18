@@ -1,4 +1,4 @@
-class KdeKarchive < Formula
+class Karchive < Formula
   desc "Reading, creating, and manipulating file archives"
   homepage "https://api.kde.org/frameworks/karchive/html/index.html"
   url "https://download.kde.org/stable/frameworks/5.79/karchive-5.79.0.tar.xz"

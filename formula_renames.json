@@ -132,5 +132,6 @@
   "wires": "geckodriver",
   "wpcli-completion": "wp-cli-completion",
   "xu4": "scummvm",
-  "kde-extra-cmake-modules": "extra-cmake-modules"
+  "kde-extra-cmake-modules": "extra-cmake-modules",
+  "kde-karchive": "karchive"
 }
