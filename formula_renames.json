@@ -131,5 +131,6 @@
   "v8-315": "v8@3.15",
   "wires": "geckodriver",
   "wpcli-completion": "wp-cli-completion",
-  "xu4": "scummvm"
+  "xu4": "scummvm",
+  "kde-extra-cmake-modules": "extra-cmake-modules"
 }

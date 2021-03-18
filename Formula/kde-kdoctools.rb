@@ -22,8 +22,8 @@ class KdeKdoctools < Formula
   depends_on "cmake" => [:build, :test]
   depends_on "docbook-xsl" => [:build, :test]
   depends_on "doxygen" => :build
+  depends_on "extra-cmake-modules" => [:build, :test]
   depends_on "gettext" => :build
-  depends_on "kde-extra-cmake-modules" => [:build, :test]
   depends_on "kde-ki18n" => :build
 
   depends_on "kde-karchive"

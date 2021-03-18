@@ -16,8 +16,8 @@ class KdeThreadweaver < Formula
 
   depends_on "cmake" => [:build, :test]
   depends_on "doxygen" => :build
+  depends_on "extra-cmake-modules" => [:build, :test]
   depends_on "graphviz" => :build
-  depends_on "kde-extra-cmake-modules" => [:build, :test]
   depends_on "qt@5"
 
   def install
